@@ -1,4 +1,4 @@
-const contractAddress = "0x1C5fBB620F5dA116ca36Cc05CAF4D3f59499cd9D";
+const contractAddress = "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853";
 
 const abi = [
   {
@@ -643,6 +643,38 @@ const abi = [
     type: "function",
   },
   {
+    inputs: [],
+    name: "getCurrentEpoch",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "epoch",
+        type: "uint256",
+      },
+    ],
+    name: "getPrizePool",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [
       {
         internalType: "uint256",
@@ -806,6 +838,19 @@ const abi = [
     name: "setWithdrawAddress",
     outputs: [],
     stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "timeUntilNextEpoch",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
     type: "function",
   },
   {

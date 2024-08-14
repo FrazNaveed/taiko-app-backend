@@ -1,31 +1,63 @@
 // Import packages
 require("dotenv").config();
+const http = require("http");
 const express = require("express");
-var bodyParser = require("body-parser");
-var cors = require("cors");
+const WebSocket = require("ws");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
+// Controllers
+const dummyBets1 = require("./routes/dummyBets1");
+const dummyBets2 = require("./routes/dummyBets2");
+const currentEpoch = require("./routes/getcurrentEpoch");
+const timeRemaining = require("./routes/gettimeRemaining");
+const prizePool = require("./routes/getPrizePool");
+// const setStartPrice = require("./routes/setStartPrice");
+// const setClosePrice = require("./routes/setClosePrice");
 
-//controllers
-const betBull = require("./routes/betBull");
-const betBear = require("./routes/betBear");
-const priceSetter = require("./routes/priceSetter");
+// Create an Express app
+const app = express();
 
 // Middlewares
-const app = express();
 app.use(express.json());
-
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Routes
-app.use("/betBull", betBull);
-app.use("/betBear", betBear);
-app.use("/setStartPrice", priceSetter);
-app.use("/setStartPrice", priceSetter);
+app.use("/currentEpoch", currentEpoch);
+app.use("/timeRemaining", timeRemaining);
+app.use("/prizePool", prizePool);
+app.use("/dummyBets1", dummyBets1);
+app.use("/dummyBets2", dummyBets2);
 
-//fetch the rewards & show in the button to claim
+// Create an HTTP server and attach the Express app to it
+const server = http.createServer(app);
 
-// connection
+// Create a WebSocket server and attach it to the HTTP server
+const wss = new WebSocket.Server({ server });
+
+// Handle WebSocket connections
+wss.on("connection", (ws) => {
+  console.log("Client connected");
+
+  // Send data to the client every second
+  const interval = setInterval(() => {
+    ws.send(
+      JSON.stringify({
+        message: `Hello from WebSocket at ${new Date().toLocaleTimeString()}`,
+      })
+    );
+  }, 1000);
+
+  ws.on("close", () => {
+    clearInterval(interval);
+    console.log("Client disconnected");
+  });
+});
+
+// Start the server
 const port = process.env.PORT || 9001;
-app.listen(port, () => console.log(`Listening to port ${port}`));
+server.listen(port, () => {
+  console.log(`Listening to port ${port}`);
+});

@@ -11,11 +11,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.7.4",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "ethers": "^6.13.2",
     "express": "^4.17.3",
-    "nodemon": "^2.0.15"
+    "node-cron": "^3.0.3",
+    "nodemon": "^2.0.15",
+    "web3": "^4.11.1",
+    "ws": "^8.18.0"
   }
 }

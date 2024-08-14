@@ -1,12 +1,12 @@
 const express = require("express");
 const contractInstance = require("../contractInstance/contractInstance.js");
+
 const router = express.Router();
 
-router.post("/", async (req, res, next) => {
-  const data = await contractInstance.admin();
-
+router.get("/", async (req, res, next) => {
+  const response = await contractInstance.getCurrentEpoch();
   return res.status(200).json({
-    message: "Bet bull",
+    epoch: BigInt(response).toString(),
   });
 });
 
