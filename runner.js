@@ -33,7 +33,7 @@ async function init() {
   const delay = 20;
   console.log("Time remaining in seconds:", timeRemainingInSeconds);
   const timeRemainingInMilliseconds = (parseInt(timeRemaining) + delay) * 1000;
-  setTimeout(firstFunction, timeRemainingInMilliseconds);
+  // setTimeout(firstFunction, timeRemainingInMilliseconds);
 }
 
 async function firstFunction() {
