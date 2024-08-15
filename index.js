@@ -1,6 +1,7 @@
 require("dotenv").config();
 const http = require("http");
 const express = require("express");
+const cors = require("cors"); // Import cors
 const WebSocket = require("ws");
 const init = require("./runner");
 
@@ -13,12 +14,23 @@ const getLiveCardData = require("./routes/getLiveCardData");
 const getHistoricalData = require("./routes/getHistoricalData");
 const getAlreadyBetted = require("./routes/getAlreadyBetted");
 const getMinimumBetAmount = require("./routes/getMinimumBetAmount");
+
 const app = express();
+
+// Middleware setup
+app.use(
+  cors({
+    origin: "https://taiko-price-predictor.vercel.app", // Replace with your frontend's origin
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
 app.use(express.json());
-app.use(require("cors")());
 app.use(require("body-parser").urlencoded({ extended: false }));
 app.use(require("body-parser").json());
 
+// Route setup
 app.use("/currentEpoch", currentEpoch);
 app.use("/timeRemaining", timeRemaining);
 app.use("/prizePool", prizePool);
