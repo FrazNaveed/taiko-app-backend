@@ -16,7 +16,7 @@ router.get("/", async (req, res, next) => {
   const totalPoolReward = parseInt(betsBull) + parseInt(betsBear);
   return res.status(200).json({
     lockedPrice: lockedPrice,
-    poolReward: totalPoolReward,
+    poolReward: BigInt(totalPoolReward).toString(),
     decimals: decimals,
   });
 });
