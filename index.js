@@ -17,6 +17,24 @@ const getMinimumBetAmount = require("./routes/getMinimumBetAmount");
 
 const app = express();
 
+// Configure CORS
+const allowedOrigins = [
+  "http://localhost:3000", // Adjust the port if needed
+  "https://taiko-price-predictor.vercel.app",
+];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+  })
+);
+
 app.use(express.json());
 app.use(require("body-parser").urlencoded({ extended: false }));
 app.use(require("body-parser").json());
