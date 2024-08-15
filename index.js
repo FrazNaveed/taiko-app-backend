@@ -2,6 +2,7 @@ require("dotenv").config();
 const http = require("http");
 const express = require("express");
 const WebSocket = require("ws");
+const init = require("./runner");
 
 const dummyBets1 = require("./routes/dummyBets1");
 const dummyBets2 = require("./routes/dummyBets2");
@@ -34,6 +35,7 @@ require("./sockets")(wss);
 const port = process.env.PORT || 9001;
 server.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
+  init();
 });
 
 module.exports = app;
