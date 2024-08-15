@@ -17,7 +17,7 @@ router.get("/", async (req, res, next) => {
     return res.status(200).json({
       startPrice: startPrice1,
       closePrice: closePrice1,
-      totalPoolReward: totalPoolReward1,
+      totalPoolReward: BigInt(totalPoolReward1).toString(),
     });
   } catch (error) {
     console.error("Error expired card data from contract", error);

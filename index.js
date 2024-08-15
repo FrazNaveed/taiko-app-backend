@@ -11,7 +11,8 @@ const timeRemaining = require("./routes/gettimeRemaining");
 const prizePool = require("./routes/getPrizePool");
 const getLiveCardData = require("./routes/getLiveCardData");
 const getHistoricalData = require("./routes/getHistoricalData");
-
+const getAlreadyBetted = require("./routes/getAlreadyBetted");
+const getMinimumBetAmount = require("./routes/getMinimumBetAmount");
 const app = express();
 app.use(express.json());
 app.use(require("cors")());
@@ -23,6 +24,8 @@ app.use("/timeRemaining", timeRemaining);
 app.use("/prizePool", prizePool);
 app.use("/getLiveCardData", getLiveCardData);
 app.use("/getHistoricalData", getHistoricalData);
+app.use("/getAlreadyBetted", getAlreadyBetted);
+app.use("/getMinimumBetAmount", getMinimumBetAmount);
 
 app.use("/dummyBets1", dummyBets1);
 app.use("/dummyBets2", dummyBets2);
