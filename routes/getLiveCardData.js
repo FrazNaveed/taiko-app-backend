@@ -14,6 +14,7 @@ router.get("/", async (req, res, next) => {
   const betsBull = BigInt(roundData[3]).toString();
   const betsBear = BigInt(roundData[4]).toString();
   const totalPoolReward = parseInt(betsBull) + parseInt(betsBear);
+
   return res.status(200).json({
     lockedPrice: lockedPrice,
     poolReward: BigInt(totalPoolReward).toString(),
