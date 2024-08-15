@@ -20,7 +20,7 @@ const app = express();
 // Middleware setup
 app.use(
   cors({
-    origin: "https://taiko-price-predictor.vercel.app", // Replace with your frontend's origin
+    origin: "https://taiko-price-predictor.vercel.app/", // Replace with your frontend's origin
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
