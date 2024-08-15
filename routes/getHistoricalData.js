@@ -6,7 +6,7 @@ const router = express.Router();
 router.get("/", async (req, res, next) => {
   try {
     const epoch = await contractInstance.getCurrentEpoch();
-    const roundData1 = await contractInstance.rounds(1); //parseInt(epoch) - 3
+    const roundData1 = await contractInstance.rounds(5); //parseInt(epoch) - 3
 
     const startPrice1 = BigInt(roundData1[1]).toString();
     const closePrice1 = BigInt(roundData1[2]).toString();

@@ -7,7 +7,7 @@ const router = express.Router();
 router.get("/", async (req, res, next) => {
   const epoch = await contractInstance.getCurrentEpoch();
 
-  const roundData = await contractInstance.rounds(1); // parseInt(epoch) - 1
+  const roundData = await contractInstance.rounds(5); // parseInt(epoch) - 1
   const lockedPrice = BigInt(roundData[1]).toString();
   const response = await axios.get(process.env.PRICE_FEED);
   const decimals = response.data.parsed[0].price.expo;

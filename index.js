@@ -28,14 +28,14 @@ app.use("/dummyBets1", dummyBets1);
 app.use("/dummyBets2", dummyBets2);
 
 const server = http.createServer(app);
-const wss = new WebSocket.Server({ server });
-require("./sockets")(wss);
+// const wss = new WebSocket.Server({ server });
+// require("./sockets")(wss);
 
 // Start the server
 const port = process.env.PORT || 9001;
 server.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
-  init();
+  // init();
 });
 
 module.exports = app;
