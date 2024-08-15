@@ -17,15 +17,6 @@ const getMinimumBetAmount = require("./routes/getMinimumBetAmount");
 
 const app = express();
 
-// Middleware setup
-app.use(
-  cors({
-    origin: "https://taiko-price-predictor.vercel.app/", // Replace with your frontend's origin
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
-
 app.use(express.json());
 app.use(require("body-parser").urlencoded({ extended: false }));
 app.use(require("body-parser").json());
