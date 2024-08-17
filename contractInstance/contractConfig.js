@@ -1,4 +1,5 @@
-const contractAddress = "0x956ca74500F26ce19A6eEc77C49b673A59e0FA1a";
+// const contractAddress = "0x956ca74500F26ce19A6eEc77C49b673A59e0FA1a";
+const contractAddress = "0x71cE5877a70200f81519538e343280fd1974BE9E";
 
 const abi = [
   {
@@ -598,19 +599,6 @@ const abi = [
   },
   {
     inputs: [],
-    name: "currentEpoch",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
     name: "game",
     outputs: [
       {
@@ -637,19 +625,6 @@ const abi = [
         internalType: "uint64",
         name: "launchDate",
         type: "uint64",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "getCurrentEpoch",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
       },
     ],
     stateMutability: "view",
@@ -838,19 +813,6 @@ const abi = [
     name: "setWithdrawAddress",
     outputs: [],
     stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "timeUntilNextEpoch",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
     type: "function",
   },
   {

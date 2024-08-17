@@ -1,13 +1,13 @@
 const express = require("express");
 const { default: axios } = require("axios");
 const contractInstance = require("../contractInstance/contractInstance.js");
+const getCurrentEpochAndTime = require("../funcs/getEpochAndTime");
 
 const router = express.Router();
 
 router.get("/", async (req, res, next) => {
-  const epoch = await contractInstance.getCurrentEpoch();
-
-  const roundData = await contractInstance.rounds(5); // parseInt(epoch) - 1
+  const { currentEpoch } = await getCurrentEpochAndTime();
+  const roundData = await contractInstance.rounds(parseInt(currentEpoch) - 1);
   const lockedPrice = BigInt(roundData[1]).toString();
   const response = await axios.get(process.env.PRICE_FEED);
   const decimals = response.data.parsed[0].price.expo;

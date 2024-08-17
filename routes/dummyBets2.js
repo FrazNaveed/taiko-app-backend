@@ -2,6 +2,7 @@ const express = require("express");
 const ethers = require("ethers");
 const { contractAddress } = require("../contractInstance/contractConfig.js");
 const contractInstance = require("../contractInstance/contractInstance.js");
+const getCurrentEpochAndTime = require("../funcs/getEpochAndTime");
 
 const router = express.Router();
 
@@ -14,12 +15,12 @@ router.post("/", async (req, res, next) => {
   const wallets = privateKeys.map((pk) => new ethers.Wallet(pk, provider));
   const amountInEther = "0.001";
   const amountInWei = ethers.parseEther(amountInEther);
-  const epoch = await contractInstance.getCurrentEpoch();
+  const { currentEpoch } = await getCurrentEpochAndTime();
 
   const betBull = async (wallet) => {
     try {
       const contractWithSigner = contractInstance.connect(wallet);
-      const tx = await contractWithSigner.betBull(parseInt(epoch) + 1, {
+      const tx = await contractWithSigner.betBull(parseInt(currentEpoch) + 1, {
         value: amountInWei,
       });
       await tx.wait();
@@ -35,7 +36,7 @@ router.post("/", async (req, res, next) => {
   const betBear = async (wallet) => {
     try {
       const contractWithSigner = contractInstance.connect(wallet);
-      const tx = await contractWithSigner.betBear(parseInt(epoch) + 1, {
+      const tx = await contractWithSigner.betBear(parseInt(currentEpoch) + 1, {
         value: amountInWei,
       });
       await tx.wait();
